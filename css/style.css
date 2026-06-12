@@ -27,7 +27,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font-body); background: #111; color: var(--text-dark); overflow-x: hidden; }
+html { background: #111; }
+body { font-family: var(--font-body); background: var(--palha); color: var(--text-dark); overflow-x: hidden; margin: 0; }
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 button { cursor: pointer; font-family: var(--font-body); border: none; background: none; }
