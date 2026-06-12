@@ -231,6 +231,7 @@ function renderizarProdutos() {
   hide('produtos-vazio');
   show('produtos-grid');
   grid.innerHTML = lista.map(cardHTML).join('');
+  bindImgFallbacks();
   animarCards();
 }
 
@@ -249,13 +250,11 @@ function animarCards() {
 
 const catLabelMap = { maco:'Maço', unidade:'Unidade', bandeja:'Bandeja', pacote:'Pacote', kg:'Kg' };
 
-function imgFallbackSVG() {
-  return '<div class="produto-img-fallback"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a5c89a" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div>';
-}
+const FALLBACK_IMG = '<div class="produto-img-fallback"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a5c89a" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div>';
 
 function cardHTML(p) {
-  const indisp = !p.disponivel;
-  const imgSrc = 'assets/images/produtos/' + escHtml(p.imagem);
+  const indisp  = !p.disponivel;
+  const imgSrc  = 'assets/images/produtos/' + p.imagem;
   const tagIndisp = indisp
     ? '<span class="produto-tag produto-tag-indisponivel">Indisponível</span>' : '';
   const tagQtd = (p.disponivel && p.quantidade > 0)
@@ -263,9 +262,8 @@ function cardHTML(p) {
 
   return (
     '<article class="produto-card' + (indisp ? ' indisponivel' : '') + '">' +
-      '<div class="produto-img-wrap">' +
-        '<img src="' + imgSrc + '" alt="' + escHtml(p.nome) + '" loading="lazy"' +
-             ' onerror="this.parentElement.innerHTML=imgFallbackSVG()" />' +
+      '<div class="produto-img-wrap" data-fallback="1">' +
+        '<img src="' + imgSrc + '" alt="' + escHtml(p.nome) + '" loading="lazy" />' +
         tagIndisp + tagQtd +
       '</div>' +
       '<div class="produto-info">' +
@@ -279,4 +277,13 @@ function cardHTML(p) {
     '</article>'
   );
 }
+
+function bindImgFallbacks() {
+  document.querySelectorAll('.produto-img-wrap[data-fallback] img').forEach(img => {
+    img.addEventListener('error', function() {
+      this.parentElement.innerHTML = FALLBACK_IMG;
+    });
+  });
+}
+
 }

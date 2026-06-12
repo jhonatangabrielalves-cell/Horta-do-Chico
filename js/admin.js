@@ -249,8 +249,8 @@ function linhaHTML(p) {
       <td>
         <div class="td-produto">
           <div class="td-img">
-            <img src="../assets/images/produtos/${escHtml(p.imagem)}" alt=""
-                 onerror="this.style.display='none'" />
+            <img src="assets/images/produtos/${escHtml(p.imagem)}" alt=""
+                 onerror="this.style.display='none';this.parentElement.style.background='var(--verde-suave)'" />
           </div>
           <div>
             <div class="td-nome">${escHtml(p.nome)}</div>
