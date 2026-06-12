@@ -762,8 +762,6 @@ input, select { font-family: var(--font-body); }
   .footer-links { gap: 14px; }
   .footer-links a { font-size: 12px; }
   .footer-copy { font-size: 11px; }
-
-  .whatsapp-float { bottom: 18px; right: 18px; padding: 13px; border-radius: 50%; }
   .whatsapp-float span { display: none; }
 
   .admin-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
