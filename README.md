@@ -55,7 +55,7 @@ Jhonatan Gabriel Alves
 3º ano do Ensino Médio — Técnico em Agronegócio
 Concurso Agrinho 2026 — SENAR-PR / SEED-PR
 
-**Professor(a) orientador(a):** *(a preencher)*
+Professor(a) orientador(a): Débora Rodrigues Vieira Santos
 
 ---
 
